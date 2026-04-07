@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Calendar, Star, Clock, Heart, Share2, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import festivalsData from "../data/festivals.json";
+import { ASSETS } from "../constants/assets";
 
 // Import images
 import diwaliImg from "../assets/diwali.jpeg";
@@ -149,7 +150,7 @@ const FestivalsPage = ({ addBookmark, isBookmarked }) => {
         <video
           className="absolute inset-0 w-full h-full object-cover"
           style={{ zIndex: 0 }}
-          src="https://res.cloudinary.com/bharatverse/video/upload/v1766498820/rl75kecmsmmv35aijemw.mp4"
+          src={ASSETS.FESTIVALS_BG_VIDEO}
           autoPlay
           loop
           muted

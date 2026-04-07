@@ -15,6 +15,7 @@ import { useUser } from "@clerk/clerk-react";
 import { saveQuizResult } from "../services/quizService";
 import { checkAndAwardBadges } from "../services/badgeService";
 import { getUserQuizStats, getUserQuizHistory } from "../services/quizService";
+import { ASSETS } from "../constants/assets";
 
 const Quiz = ({
   isSignedIn,
@@ -246,44 +247,68 @@ const Quiz = ({
   if (!isSignedIn || !isLoaded) {
     return (
       <div
-        className="fixed inset-0 flex items-center justify-center p-4"
+        className="fixed inset-0 flex items-center justify-center p-4 overflow-hidden bg-black"
         style={{
-          backgroundImage: 'url("https://res.cloudinary.com/bharatverse/image/upload/v1766498817/hpnpenprlb8qhkslxfyj.webp")',
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          minHeight: "100vh",
-          minWidth: "100vw",
           zIndex: 10,
         }}
       >
+        {/* Background Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
+          src={ASSETS.HERITAGE_BG}
+        />
+        {/* Subtle darkened overlay (lower blur as requested) */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "rgba(255,255,255,0.14)",
-            backdropFilter: "blur(1px)",
+            background: "rgba(0,0,0,0.2)",
+            backdropFilter: "blur(0.5px)",
             zIndex: 13,
           }}
         />
-        <div
-          className="relative z-30 flex flex-col items-center justify-center"
-          style={{
-            maxWidth: "352px",
-            width: "100%",
-          }}
+
+        {/* Back Button to prevent being stuck */}
+        <button
+          onClick={() => onPageChange("home")}
+          className="absolute top-8 left-8 z-50 flex items-center space-x-2 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10 transition-all duration-300 group"
         >
-          <div
-            className="rounded-xl overflow-hidden"
-            style={{
-              boxShadow: "0 4px 24px 2px rgba(80,41,5,0.12)",
-              background: "rgba(255,255,255,0.78)",
-              border: "1.5px solid rgba(224,169,26,0.10)",
-              backdropFilter: "blur(11px)",
-              padding: "22px 13px",
+          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+          <span className="font-bold text-sm font-heritage tracking-wide">Back to Home</span>
+        </button>
+        <div
+          className="relative z-30 flex flex-col items-center justify-center w-full max-w-md"
+        >
+          <SignIn
+            afterSignInUrl="/quiz"
+            appearance={{
+              layout: {
+                socialButtonsPlacement: "bottom",
+                showOptionalFields: false,
+              },
+              variables: {
+                colorPrimary: "#d97706", // amber-600
+                colorText: "#1f2937",    // gray-800
+                borderRadius: "16px",
+                fontFamily: "Inter, system-ui, sans-serif",
+              },
+              elements: {
+                card: "bg-white/95 backdrop-blur-xl border border-amber-200/50 shadow-2xl rounded-2xl",
+                formButtonPrimary: 
+                  "bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:from-amber-600 hover:via-orange-600 hover:to-red-600 border-none shadow-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-95 py-3 text-sm font-bold uppercase tracking-wider",
+                headerTitle: "text-2xl font-heritage font-bold text-amber-900",
+                headerSubtitle: "text-amber-700/80 font-medium",
+                socialButtonsBlockButton: "border border-amber-100 hover:bg-amber-50 transition-colors duration-200",
+                formFieldInput: "border-amber-100 focus:ring-amber-500 focus:border-amber-500 rounded-xl",
+                footerActionLink: "text-amber-600 hover:text-amber-700 font-bold",
+                identityPreviewText: "text-amber-900",
+                rootBox: "flex justify-center items-center w-full"
+              },
             }}
-          >
-            <SignIn afterSignInUrl="/quiz" />
-          </div>
+          />
         </div>
       </div>
     );

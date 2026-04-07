@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Client } from "@gradio/client";
+import { ASSETS } from "../constants/assets";
 
 // --- Imports ---
 // Video moved to public/storytelling_bg.mp4 to avoid bundle size issues
@@ -834,7 +835,7 @@ const StoryTellingPage = ({ onBack }) => {
           playsInline
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover opacity-80"
-          src="https://res.cloudinary.com/bharatverse/video/upload/v1766508692/bharatverse_assets/tth6brua8hbhf6ikazap.mp4"
+          src={ASSETS.STORYTELLING_VIDEO}
         />
         <div className="absolute inset-0 bg-black/30 mix-blend-multiply"></div>
 

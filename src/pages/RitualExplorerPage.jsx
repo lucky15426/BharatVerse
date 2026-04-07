@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { ritualDetailsData } from "../utils/ritualDetailsData";
+import { ASSETS } from "../constants/assets";
 
 const RitualExplorerPage = () => {
   const [selectedState, setSelectedState] = useState(null);
@@ -44,7 +45,7 @@ const RitualExplorerPage = () => {
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source
-             src="https://res.cloudinary.com/bharatverse/video/upload/v1766499649/bharatverse_public/jfezyhbtv6usxh1wttio.mp4"
+             src={ASSETS.RITUALS_VIDEO}
             controls
           />
           

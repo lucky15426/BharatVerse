@@ -22,6 +22,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ASSETS } from "../constants/assets";
 
 
 const TourPage360 = ({ onPageChange }) => {
@@ -184,7 +185,7 @@ const TourPage360 = ({ onPageChange }) => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="https://res.cloudinary.com/bharatverse/video/upload/v1766498471/zfs7izglmckzknou6jvl.mp4" controls />
+          <source src={ASSETS.TOUR_360_VIDEO} controls />
         </video>
 
         {/* Gradient overlay for text readability */}

@@ -6,17 +6,11 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/clerk-react";
-import { createOrUpdateUser } from "../services/userService";
 
 const Header = ({ currentPage, onPageChange, searchQuery, onSearchChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user: clerkUser, isLoaded, isSignedIn } = useUser();
 
-  useEffect(() => {
-    if (isLoaded && isSignedIn && clerkUser) {
-      createOrUpdateUser(clerkUser);
-    }
-  }, [isLoaded, isSignedIn, clerkUser]);
 
   const navLinks = [
     { id: "home", label: "Home" },

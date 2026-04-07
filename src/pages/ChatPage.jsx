@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-hot-toast";
+import { ASSETS } from "../constants/assets";
 
 const ChatPage = ({ user }) => {
   const [messages, setMessages] = useState([
@@ -343,7 +344,7 @@ If the question is not related to Indian heritage, politely redirect the convers
           muted
           loop
           className="absolute inset-0 w-full h-full object-cover"
-          src="https://res.cloudinary.com/bharatverse/video/upload/v1766498836/zqbrec6oay46vvkmtfxq.mp4"
+          src={ASSETS.CHAT_BG_VIDEO}
         />
         <div className="relative z-10 flex flex-col items-start justify-start pl-8 md:pl-16 pt-12">
           <div className="bg-black/40 rounded-2xl px-8 py-8 shadow-2xl backdrop-blur-md space-y-4 w-fit max-w-3xl text-center">

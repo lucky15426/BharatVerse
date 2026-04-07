@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { ASSETS } from "../constants/assets";
 
 const GlobalMusicPlayer = () => {
   const audioRef = useRef(null);
@@ -33,7 +34,7 @@ const GlobalMusicPlayer = () => {
   return (
     <>
       {/* Global audio element – mounted once in App */}
-      <audio ref={audioRef} src="https://res.cloudinary.com/bharatverse/video/upload/v1766498820/ajjok4u961sxgp5wfyvg.mp3" loop preload="auto" />
+      <audio ref={audioRef} src={ASSETS.GLOBAL_MUSIC} loop preload="auto" />
 
       {/* Fixed circular button at top-right, slightly lower than before */}
       <div className="fixed top-24 right-6 z-50 select-none">

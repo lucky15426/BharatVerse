@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import hiddenGemsData from "../data/hiddengems.json";
+import { ASSETS } from "../constants/assets";
 
 // Import all images
 import chandBaoriImg from "../assets/hidden-gems/chand-baori.jpg";
@@ -197,7 +198,7 @@ const HiddenGemsPage = ({ onPageChange, addBookmark, isBookmarked }) => {
         <video
           className="absolute inset-0 w-full h-full object-cover"
           style={{ zIndex: 0 }}
-          src="https://res.cloudinary.com/bharatverse/video/upload/v1766504297/bharatverse_assets/hedrfunin0ecgzhw6dey.mp4"
+          src={ASSETS.HIDDEN_GEMS_VIDEO}
           autoPlay
           loop
           muted

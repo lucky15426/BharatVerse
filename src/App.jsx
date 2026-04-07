@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "react-hot-toast";
 import { useUser, SignIn, useAuth } from "@clerk/clerk-react";
-import { Scroll } from "lucide-react";
+import { Scroll, ArrowLeft } from "lucide-react";
 
 // ✅ IMPORT ANONYMOUS SUPABASE CLIENT (NO Clerk interference)
 import { supabase } from "./lib/supabaseClient";
@@ -15,6 +15,7 @@ import GlobalMusicPlayer from "./components/GlobalMusicPlayer";
 
 //changes
 import FloatingMenu from "./components/FloatingMenu";
+import { ASSETS } from "./constants/assets";
 
 // Pages
 import HomePage from "./pages/HomePage";
@@ -130,87 +131,66 @@ function App() {
         if (!isSignedIn) {
           return (
             <div
-              className="fixed inset-0 flex justify-center items-start"
+              className="fixed inset-0 flex justify-center items-start overflow-hidden bg-black"
               style={{
-                backgroundImage: 'url("https://res.cloudinary.com/bharatverse/image/upload/v1766498817/hpnpenprlb8qhkslxfyj.webp")',
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                minHeight: "100vh",
-                minWidth: "100vw",
                 zIndex: 50,
               }}
             >
+              {/* Background Video */}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover opacity-90"
+                src={ASSETS.HERITAGE_BG}
+              />
+              {/* Overlay for better readability */}
+              <div className="absolute inset-0 bg-black/20 backdrop-blur-[0.5px] z-10" />
+
+              {/* Back to Home Button */}
+              <button
+                onClick={() => handlePageChange("home")}
+                className="absolute top-8 left-8 z-50 flex items-center space-x-2 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10 transition-all duration-300 group"
+              >
+                <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+                <span className="font-bold text-sm">Back to Home</span>
+              </button>
               <div
-                style={{
-                  width: "100vw",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  paddingTop: "18vh",
-                  minHeight: "100vh",
-                }}
+                  style={{
+                    width: "100vw",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "flex-start",
+                    paddingTop: "18vh",
+                    minHeight: "100vh",
+                    zIndex: 20, // Sit on top of video and overlay
+                  }}
               >
                 <SignIn
                   afterSignInUrl="/quiz"
                   appearance={{
-                    elements: {
-                      rootBox: {
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "100vw",
-                        minHeight: "auto",
-                        background: "none",
-                        margin: 0,
-                        padding: 0,
-                      },
-                      card: {
-                        margin: 0,
-                        padding: "2.25rem 2rem 2rem 2rem",
-                        maxWidth: "360px",
-                        width: "100%",
-                        background: "rgba(255,255,255,0.10)",
-                        backdropFilter: "blur(15px)",
-                        WebkitBackdropFilter: "blur(15px)",
-                        borderRadius: "22px",
-                        border: "1.5px solid rgba(255,255,255,0.24)",
-                        boxShadow:
-                          "0 16px 40px 0 rgba(50,24,0,0.20), 0 2px 8px 0 rgba(0,0,0,0.06)",
-                      },
-                      formContainer: {
-                        maxWidth: "330px",
-                        margin: "0 auto",
-                        padding: 0,
-                        width: "100%",
-                      },
-                      cardBox: {
-                        maxWidth: "340px",
-                        width: "100%",
-                        margin: "0 auto",
-                      },
-                      modal: { padding: 0, margin: 0 },
-                      main: { margin: 0, padding: 0 },
-                      root: { margin: 0, padding: 0 },
-                      identityPreview: { display: "none" },
-                      footer: { display: "none" },
-                      headerTitle: {
-                        textAlign: "center",
-                        fontWeight: 700,
-                        fontSize: "1.3rem",
-                        letterSpacing: ".1rem",
-                      },
-                      headerSubtitle: {
-                        textAlign: "center",
-                        color: "#946c25",
-                        marginTop: "1rem",
-                      },
+                    layout: {
+                      socialButtonsPlacement: "bottom",
+                      showOptionalFields: false,
                     },
                     variables: {
-                      colorPrimary: "#e6a53c",
-                      borderRadius: "22px",
-                      fontSize: "1rem",
-                      colorText: "#3a2300",
+                      colorPrimary: "#d97706", // amber-600
+                      colorText: "#1f2937",    // gray-800
+                      borderRadius: "16px",
+                      fontFamily: "Inter, system-ui, sans-serif",
+                    },
+                    elements: {
+                      card: "bg-white/90 backdrop-blur-xl border border-amber-200/50 shadow-2xl rounded-2xl",
+                      formButtonPrimary: 
+                        "bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:from-amber-600 hover:via-orange-600 hover:to-red-600 border-none shadow-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-95 py-3 text-sm font-bold uppercase tracking-wider",
+                      headerTitle: "text-2xl font-heritage font-bold text-amber-900",
+                      headerSubtitle: "text-amber-700/80 font-medium",
+                      socialButtonsBlockButton: "border border-amber-100 hover:bg-amber-50 transition-colors duration-200",
+                      formFieldInput: "border-amber-100 focus:ring-amber-500 focus:border-amber-500 rounded-xl",
+                      footerActionLink: "text-amber-600 hover:text-amber-700 font-bold",
+                      identityPreviewText: "text-amber-900",
+                      rootBox: "flex justify-center items-center w-full"
                     },
                   }}
                 />

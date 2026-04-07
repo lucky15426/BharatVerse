@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ASSETS } from "../constants/assets";
 
 const API_BASE = "https://bharatverse11-new-recommender-system-nlp2.hf.space";
 
@@ -221,7 +222,7 @@ export default function RecommendationsPage({ onBack }) {
         >
           <video
             className="w-full h-full object-cover object-center"
-            src="https://res.cloudinary.com/bharatverse/video/upload/v1766520904/bg_video_slgnkx.mp4"
+            src={ASSETS.RECOMMENDATIONS_VIDEO}
             autoPlay
             loop
             muted
