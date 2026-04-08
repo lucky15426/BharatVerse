@@ -32,7 +32,7 @@ const ChatBot = ({ isOpen, onClose }) => {
 
 User question: ${message}
 
-Please provide a comprehensive, accurate, and engaging response about Indian heritage. Keep it concise for a chat interface (2-3 sentences max). Include specific details and cultural significance when relevant.
+Please provide a comprehensive, accurate, and engaging response about Indian heritage. Keep it concise for a chat interface (2-3 sentences max). Include specific details & cultural significance when relevant.
 
 If the question is not related to Indian heritage, politely redirect to Indian cultural topics.`;
 
@@ -189,23 +189,20 @@ If the question is not related to Indian heritage, politely redirect to Indian c
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex ${
-                message.sender === "user" ? "justify-end" : "justify-start"
-              }`}
+              className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"
+                }`}
             >
               <div
-                className={`flex items-start space-x-2 max-w-[80%] ${
-                  message.sender === "user"
+                className={`flex items-start space-x-2 max-w-[80%] ${message.sender === "user"
                     ? "flex-row-reverse space-x-reverse"
                     : "flex-row"
-                }`}
+                  }`}
               >
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    message.sender === "user"
+                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${message.sender === "user"
                       ? "bg-saffron-500 text-white"
                       : "bg-gray-300 text-gray-600"
-                  }`}
+                    }`}
                 >
                   {message.sender === "user" ? (
                     <User size={16} />
@@ -246,11 +243,10 @@ If the question is not related to Indian heritage, politely redirect to Indian c
             <button
               onClick={startVoiceInput}
               disabled={isListening || isLoading}
-              className={`p-2 rounded-lg transition-colors ${
-                isListening
+              className={`p-2 rounded-lg transition-colors ${isListening
                   ? "bg-red-100 text-red-600"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-              } disabled:opacity-50`}
+                } disabled:opacity-50`}
             >
               <Mic size={20} />
             </button>
